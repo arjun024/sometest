@@ -28,4 +28,4 @@ jobs:
 
     - name: Print ID
       run: |
-        echo "${{ steps.something.outputs.id }}"
+        echo '${{ steps.something.outputs.id }}'
