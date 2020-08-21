@@ -28,7 +28,7 @@ jobs:
       uses: paketo-buildpacks/github-config/actions/dispatch@main
       with:
         repos: ${{ secrets.LANGUAGE_FAMILY_REPO }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.MY_TOKEN }}
         event: dependency-update
         payload: |
           {
