@@ -26,6 +26,10 @@ jobs:
     - name: List enrolled language families
       id: language-families
       run : |
+        if [ ! -f .github/language-family-membership ]; then
+          echo "requires line record file .github/language-family-membership"
+          exit 1
+        fi
         list=$(awk -vORS=, '{print}' .github/language-family-membership | sed 's#,$#\n#')
         echo "::set-output name=list::$list"
 
