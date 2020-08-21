@@ -17,6 +17,9 @@ jobs:
     name: Send Dispatch
     steps:
 
+    - name: Check out
+      uses: actions/checkout@v2
+
     - name: Parse ID and Version
       id: dependency
       run: |
