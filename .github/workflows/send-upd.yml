@@ -23,11 +23,17 @@ jobs:
         echo "::set-output name=id::someid"
         echo "::set-output name=version:someversion"
 
+    - name: List enrolled language families
+      id: language-families
+      run : |
+        list=$(awk -vORS=, '{print}' .github/language-family-membership | sed 's#,$#\n#')
+        echo "::set-output name=list::$list"
+
     # Generic repository dispatch sender.
     - name: Send Repository Dispatch
       uses: paketo-buildpacks/github-config/actions/dispatch@main
       with:
-        repos: ${{ secrets.LANGUAGE_FAMILY_REPO }}
+        repos: ${{ steps.language-families.outputs.list }}
         token: ${{ secrets.MY_TOKEN }}
         event: dependency-update
         payload: |
