@@ -22,7 +22,7 @@ jobs:
     - name: Run a multi-line script
       id: something
       run: |
-        read -r -d '' VAR <<'EOF'
+        VAR=$(cat <<EOF
         [[order]]
         group = [
           { id = "paketo-buildpacks/java-native-image" },
@@ -37,7 +37,7 @@ jobs:
         group = [
          { id = "paketo-buildpacks/nodejs" },
         ]
-        EOF
+        EOF)
         echo "::set-output name=id::${VAR}"
 
     - name: Print passed
