@@ -38,6 +38,7 @@ jobs:
          { id = "paketo-buildpacks/nodejs" },
         ]
         EOF)
+        # https://github.community/t5/GitHub-Actions/set-output-Truncates-Multiline-Strings/m-p/38372#M3322
         content="${content//'%'/'%25'}"
         content="${content//$'\n'/'%0A'}"
         content="${content//$'\r'/'%0D'}"
