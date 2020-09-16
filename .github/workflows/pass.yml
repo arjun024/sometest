@@ -22,7 +22,7 @@ jobs:
     - name: Run a multi-line script
       id: something
       run: |
-        VAR=$(cat <<EOF
+        content=$(cat <<EOF
         [[order]]
         group = [
           { id = "paketo-buildpacks/java-native-image" },
@@ -38,7 +38,10 @@ jobs:
          { id = "paketo-buildpacks/nodejs" },
         ]
         EOF)
-        echo "::set-output name=id::${VAR}"
+        content="${content//'%'/'%25'}"
+        content="${content//$'\n'/'%0A'}"
+        content="${content//$'\r'/'%0D'}"
+        echo "::set-output name=id::${content}"
 
     - name: Print passed
       run: |
