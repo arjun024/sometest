@@ -18,7 +18,7 @@ jobs:
     - name: Install pack
       run: |
         id=$(docker create buildpacksio/pack)
-        docker cp $id:/layers/paketo-buildpacks_go-build/targets/bin/pack /usr/local/bin/
+        docker sudo cp $id:/layers/paketo-buildpacks_go-build/targets/bin/pack /usr/local/bin/
         docker rm -v $id
 
     - name: Smoke
