@@ -14,22 +14,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      with:
-        path: builder-repo
-
-    - name: Checkout paketo samples
-      uses: actions/checkout@v2
-      with:
-        repository: paketo-buildpacks/samples
-        path: samples
 
     - name: Create-builder
       id: something
       uses: docker://buildpacksio/pack
       with:
-        args: create-builder testbuilder --config builder-repo/builder.toml
+        args: create-builder testbuilder --config builder.toml
 
-    - name: Smoke
+    - name: Version
       uses: docker://buildpacksio/pack
       with:
-        args: build testapp -p samples/nodejs/yarn --builder testbuilder
+        args: version
