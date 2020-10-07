@@ -27,9 +27,9 @@ jobs:
       id: something
       uses: docker://buildpacksio/pack
       with:
-        args: create-builder testbuilder --config ${{ github.repository }}/builder-repo/builder.toml
+        args: create-builder testbuilder --config builder-repo/builder.toml
 
     - name: Smoke
       uses: docker://buildpacksio/pack
       with:
-        args: build testapp -p ${{ github.repository }}/samples/nodejs/yarn --builder testbuilder
+        args: build testapp -p samples/nodejs/yarn --builder testbuilder
