@@ -1,4 +1,4 @@
-name: Dockerrun
+name: Dockercp
 
 on:
   push:
@@ -14,21 +14,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      with:
-        path: builder-repo
-
-    - name: Checkout paketo samples
-      uses: actions/checkout@v2
-      with:
-        repository: paketo-buildpacks/samples
-        path: samples
 
     - name: Install pack
       run: |
         id=$(docker create buildpacksio/pack)
-        docker cp $id:pack - > /usr/local/bin/path
+        docker cp $id:pack /usr/local/bin/
         docker rm -v $id
 
     - name: Smoke
       run: |
-        pack create-builder testbuilder --config builder-repo/builder.toml
+        pack --version
+        pack create-builder testbuilder --config builder.toml
